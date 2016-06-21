@@ -31,7 +31,7 @@ contract CircuitBreaker {
       } else {
         currentPeriodAmount += amount;
         transfers.push(Transfer(amount, to, block.number, true, false));
-        to.send(amount);
+        if(!to.send(amount)) throw;
       }
     }
   } 
@@ -47,7 +47,7 @@ contract CircuitBreaker {
     Transfer transfer = transfers[id];
     if (transfer.releaseBlock <= block.number && !transfer.released && !transfer.stopped) {
       transfer.released = true;
-      transfer.to.send(transfer.amount);
+      if(!transfer.to.send(transfer.amount)) throw;
     }
   }
   

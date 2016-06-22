@@ -4,7 +4,7 @@ contract TokenWithInvariants {
 
   modifier checkInvariants { 
     _
-    if (this.balance != totalSupply) throw;
+    if (this.balance < totalSupply) throw;
   }
 
   function deposit(uint amount) checkInvariants {

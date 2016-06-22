@@ -1,7 +1,7 @@
-import "TokenWithEStop.sol";
+import "WorkingToken.sol";
 
 contract Recipient {
-  function callWithdraw(TokenWithEStop token) {
+  function callWithdraw(WorkingToken token) {
     token.withdraw();
   }
 }

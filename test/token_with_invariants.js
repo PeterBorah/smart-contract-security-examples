@@ -47,13 +47,12 @@ contract('TokenWithInvariants', function(accounts) {
     var token;
     var recipient;
 
-    TokenWithEStop.new(accounts[1]).
+    TokenWithInvariants.new().
       then(function(result) { token = result }).
       then(function() { return Recipient.new(); }).
       then(function(result) { recipient = result }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.transfer(recipient.address, 500) }).
-      then(function() { return token.emergencyStop({from: accounts[1]}) }).
       then(function() { return recipient.callWithdraw(token.address); }).
       then(function() { return token.balanceOf(recipient.address) }).
       then(function(result) {

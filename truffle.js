@@ -9,6 +9,7 @@ module.exports = {
     ],
     "images/": "images/"
   },
+  deploy: ["Bounty"],
   rpc: {
     host: "localhost",
     port: 8545

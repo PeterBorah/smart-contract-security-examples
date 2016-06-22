@@ -2,6 +2,7 @@ contract TokenWithEStop {
   mapping(address => uint) public balanceOf;
   address public curator;
   bool public stopped;
+  uint public totalSupply;
 
   modifier stopInEmergency { if (!stopped) _ }
   modifier onlyInEmergency { if (stopped) _ }
@@ -12,6 +13,7 @@ contract TokenWithEStop {
 
   function deposit() stopInEmergency {
     balanceOf[msg.sender] += msg.value;
+    totalSupply += msg.value;
   }
 
   function transfer(address to, uint value) stopInEmergency {
@@ -30,6 +32,8 @@ contract TokenWithEStop {
   function withdraw() onlyInEmergency{
     uint balance = balanceOf[msg.sender];
     balanceOf[msg.sender] = 0;
+    totalSupply -= balance;
+
     if(!msg.sender.send(balance)) throw;
   }
 }

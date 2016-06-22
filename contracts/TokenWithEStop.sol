@@ -4,6 +4,7 @@ contract TokenWithEStop {
   bool public stopped;
 
   modifier stopInEmergency { if (!stopped) _ }
+  modifier onlyInEmergency { if (stopped) _ }
 
   function TokenWithEStop(address _curator) {
     curator = _curator;
@@ -26,7 +27,7 @@ contract TokenWithEStop {
     }
   }
 
-  function withdraw() {
+  function withdraw() onlyInEmergency{
     uint balance = balanceOf[msg.sender];
     balanceOf[msg.sender] = 0;
     if(!msg.sender.send(balance)) throw;

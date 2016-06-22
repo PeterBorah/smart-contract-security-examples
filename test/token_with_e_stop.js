@@ -78,6 +78,7 @@ contract('TokenWithEStop', function(accounts) {
 
   it("should let you withdraw in emergency", function(done) {
     var token;
+    var recipient;
 
     TokenWithEStop.new(accounts[1]).
       then(function(result) { token = result }).

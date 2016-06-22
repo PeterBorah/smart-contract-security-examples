@@ -9,10 +9,6 @@ module.exports = {
     ],
     "images/": "images/"
   },
-  deploy: [
-    "CircuitBreaker",
-    "Recipient"
-  ],
   rpc: {
     host: "localhost",
     port: 8545

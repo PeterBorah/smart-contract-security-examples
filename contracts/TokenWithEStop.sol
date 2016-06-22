@@ -11,9 +11,10 @@ contract TokenWithEStop {
     curator = _curator;
   }
 
-  function deposit() stopInEmergency {
-    balanceOf[msg.sender] += msg.value;
-    totalSupply += msg.value;
+  function deposit(uint amount) stopInEmergency {
+    // intentionally vulnerable
+    balanceOf[msg.sender] += amount;
+    totalSupply += amount;
   }
 
   function transfer(address to, uint value) stopInEmergency {

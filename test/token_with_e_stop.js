@@ -4,7 +4,7 @@ contract('TokenWithEStop', function(accounts) {
 
     TokenWithEStop.new(accounts[1]).
       then(function(result) { token = result }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.balanceOf(accounts[0]) }).
       then(function(result) {
         assert.equal(result, 1000);
@@ -17,7 +17,7 @@ contract('TokenWithEStop', function(accounts) {
 
     TokenWithEStop.new(accounts[1]).
       then(function(result) { token = result }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.transfer(accounts[1], 100) }).
       then(function() { return token.balanceOf(accounts[0]) }).
       then(function(result) {
@@ -49,7 +49,7 @@ contract('TokenWithEStop', function(accounts) {
     TokenWithEStop.new(accounts[1]).
       then(function(result) { token = result }).
       then(function() { return token.emergencyStop({from: accounts[1]}) }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.balanceOf(accounts[0]) }).
       then(function(result) {
         assert.equal(result, 0);
@@ -62,7 +62,7 @@ contract('TokenWithEStop', function(accounts) {
 
     TokenWithEStop.new(accounts[1]).
       then(function(result) { token = result }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.emergencyStop({from: accounts[1]}) }).
       then(function() { return token.transfer(accounts[1], 100) }).
       then(function() { return token.balanceOf(accounts[0]) }).
@@ -84,7 +84,7 @@ contract('TokenWithEStop', function(accounts) {
       then(function(result) { token = result }).
       then(function() { return Recipient.new(); }).
       then(function(result) { recipient = result }).
-      then(function() { return token.deposit({value: 1000}) }).
+      then(function() { return token.deposit(1000, {value: 1000}) }).
       then(function() { return token.transfer(recipient.address, 500) }).
       then(function() { return token.emergencyStop({from: accounts[1]}) }).
       then(function() { return recipient.callWithdraw(token.address); }).

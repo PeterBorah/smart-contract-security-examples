@@ -30,7 +30,7 @@ contract TokenWithEStop {
     }
   }
 
-  function withdraw() onlyInEmergency{
+  function withdraw() onlyInEmergency {
     uint balance = balanceOf[msg.sender];
     balanceOf[msg.sender] = 0;
     totalSupply -= balance;

@@ -2,6 +2,8 @@ contract TokenWithInvariants {
   mapping(address => uint) public balanceOf;
   uint public totalSupply;
 
+  // until https://github.com/ethereum/solidity/issues/686 is fixed, this modifier
+  // only fully works for function bodies that do not have a `return`
   modifier checkInvariants { 
     _
     if (this.balance < totalSupply) throw;

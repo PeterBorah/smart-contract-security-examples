@@ -1,17 +1,19 @@
+pragma solidity ^0.4.8;
+
 contract TokenWithEStop {
   mapping(address => uint) public balanceOf;
   address public curator;
   bool public stopped;
   uint public totalSupply;
 
-  modifier stopInEmergency { if (!stopped) _ }
-  modifier onlyInEmergency { if (stopped) _ }
+  modifier stopInEmergency { if (!stopped) _; }
+  modifier onlyInEmergency { if (stopped) _; }
 
   function TokenWithEStop(address _curator) {
     curator = _curator;
   }
 
-  function deposit(uint amount) stopInEmergency {
+  function deposit(uint amount) payable stopInEmergency {
     // intentionally vulnerable
     balanceOf[msg.sender] += amount;
     totalSupply += amount;

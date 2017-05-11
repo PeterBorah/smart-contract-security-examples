@@ -1,8 +1,10 @@
+pragma solidity ^0.4.8;
+
 contract WorkingToken {
   mapping(address => uint) public balanceOf;
   uint public totalSupply;
 
-  function deposit() {
+  function deposit() payable {
     balanceOf[msg.sender] += msg.value;
     totalSupply += msg.value;
   }

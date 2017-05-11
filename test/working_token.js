@@ -1,3 +1,6 @@
+var WorkingToken = artifacts.require("WorkingToken");
+var Recipient    = artifacts.require("Recipient");
+
 contract('WorkingToken', function(accounts) {
   it("should give you tokens equal to your deposit", function(done) {
     var token;

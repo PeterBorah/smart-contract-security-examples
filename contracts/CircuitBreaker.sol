@@ -1,3 +1,5 @@
+pragma solidity ^0.4.8;
+
 contract CircuitBreaker {
   struct Transfer { uint amount; address to; uint releaseBlock; bool released; bool stopped; }
   Transfer[] public transfers;
@@ -34,8 +36,8 @@ contract CircuitBreaker {
         if(!to.send(amount)) throw;
       }
     }
-  } 
-  
+  }
+
   function updatePeriod() {
     if (currentPeriodEnd < block.number) {
       currentPeriodEnd = block.number + period;
@@ -50,10 +52,12 @@ contract CircuitBreaker {
       if(!transfer.to.send(transfer.amount)) throw;
     }
   }
-  
+
   function stopTransfer(uint id) {
     if (msg.sender == curator) {
       transfers[id].stopped = true;
     }
   }
+
+  function () payable {}
 }

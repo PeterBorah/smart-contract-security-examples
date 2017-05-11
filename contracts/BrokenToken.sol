@@ -1,8 +1,10 @@
+pragma solidity ^0.4.8;
+
 contract BrokenToken {
   mapping(address => uint) public balanceOf;
   uint public totalSupply;
 
-  function deposit(uint amount) {
+  function deposit(uint amount) payable {
     // intentionally vulnerable
     balanceOf[msg.sender] += amount;
     totalSupply += amount;

@@ -1,3 +1,6 @@
+var TokenWithEStop   = artifacts.require("TokenWithEStop");
+var Recipient        = artifacts.require("Recipient");
+
 contract('TokenWithEStop', function(accounts) {
   it("should give you tokens equal to your deposit", function(done) {
     var token;

@@ -1,8 +1,10 @@
-import "BrokenToken.sol";
+pragma solidity ^0.4.8;
+
+import "./BrokenToken.sol";
 
 contract Bounty {
   // This bounty will pay out if you can cause BrokenToken's balance
-  // to be lower than its totalSupply, which would mean that it doesn't 
+  // to be lower than its totalSupply, which would mean that it doesn't
   // have sufficient ether for everyone to withdraw.
 
   uint public totalBounty;
@@ -11,7 +13,7 @@ contract Bounty {
 
   event TargetCreation(address createdAddress);
 
-  function contribute() {
+  function contribute() payable {
     totalBounty += msg.value;
   }
 

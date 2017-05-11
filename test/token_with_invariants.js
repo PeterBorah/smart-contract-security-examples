@@ -1,3 +1,7 @@
+var TokenWithInvariants = artifacts.require("TokenWithInvariants");
+var Recipient           = artifacts.require("Recipient");
+var EvilRecipient       = artifacts.require("EvilRecipient");
+
 contract('TokenWithInvariants', function(accounts) {
   it("should give you tokens equal to your deposit", function(done) {
     var token;

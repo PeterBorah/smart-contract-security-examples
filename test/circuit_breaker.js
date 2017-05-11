@@ -1,3 +1,6 @@
+var CircuitBreaker = artifacts.require("CircuitBreaker");
+var Recipient      = artifacts.require("Recipient");
+
 contract('CircuitBreaker', function(accounts) {
   it("should transfer ether", function(done) {
     var circuit_breaker;

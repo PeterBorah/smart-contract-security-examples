@@ -1,3 +1,7 @@
+var BrokenToken   = artifacts.require("BrokenToken");
+var Recipient     = artifacts.require("Recipient");
+var EvilRecipient = artifacts.require("EvilRecipient");
+
 contract('BrokenToken', function(accounts) {
   it("should give you tokens equal to your deposit", function(done) {
     var token;
@@ -43,11 +47,12 @@ contract('BrokenToken', function(accounts) {
       then(function() { return recipient.callWithdraw(token.address); }).
       then(function() { return token.balanceOf(recipient.address) }).
       then(function(result) {
-        assert.equal(result, 0);
-        assert.equal(web3.eth.getBalance(token.address), 500);
+        assert.equal(result.valueOf(), 0);
+        assert.equal(web3.eth.getBalance(recipient.address).valueOf(), 500);
         done();
       }).catch(done);
   });
+
 
   it("should let you claim more tokens than you deserve", function(done) {
     var token;

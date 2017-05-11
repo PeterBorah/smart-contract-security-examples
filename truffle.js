@@ -10,8 +10,11 @@ module.exports = {
     "images/": "images/"
   },
   deploy: ["Bounty"],
-  rpc: {
-    host: "localhost",
-    port: 8545
+  networks: {
+    test: {
+      network_id: 3,
+      host: 'localhost',
+      port: '8545'
+    }
   }
 };
